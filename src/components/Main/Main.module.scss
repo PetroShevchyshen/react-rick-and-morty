@@ -1,0 +1,30 @@
+.main {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("/public/img/back-ground.jpeg");
+  background-size: cover;
+
+  .title {
+    display: flex;
+    width: 900px;
+    height: 900px;
+    margin: 0 auto;
+
+    p {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: white;
+      font-size: 5rem;
+      font-family: "Rubik Glitch", system-ui;
+    }
+  }
+}
+
+@media screen and (max-width: 1540px) {
+  .main {
+    .title {
+      height: 600px;
+    }
+  }
+}
