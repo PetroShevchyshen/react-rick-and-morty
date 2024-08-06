@@ -1,0 +1,52 @@
+.card {
+  color: white;
+  width: 250px;
+  height: 300px;
+  border-radius: 15px;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    box-shadow: 0 0 20px 8px rgb(180, 255, 126);
+    transition-duration: 0.3s;
+
+    .info {
+      display: flex;
+    }
+
+    .image {
+      opacity: 0.5;
+    }
+  }
+
+  .info {
+    position: absolute;
+    display: none;
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    font-weight: 600;
+    &:hover {
+      transition-duration: 2s;
+    }
+  }
+
+  .image {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+  }
+
+  .title {
+    font-family: "Rubik Glitch", system-ui;
+    font-size: 1.5rem;
+  }
+}

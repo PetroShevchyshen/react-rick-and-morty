@@ -6,6 +6,7 @@
 
 .logo {
   margin-left: 30px;
+
   img {
     width: 200px;
     height: 70px;
@@ -13,10 +14,11 @@
 }
 
 .navigation {
-  width: 500px;
+  width: 400px;
   height: 100px;
   display: flex;
   align-items: center;
+
   ul {
     display: flex;
     flex-direction: row;

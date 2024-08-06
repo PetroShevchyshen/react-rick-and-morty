@@ -1,4 +1,4 @@
-import Header from "../Header";
+import Header from "../../components/Header";
 import styles from "./Main.module.scss";
 
 function Main() {
