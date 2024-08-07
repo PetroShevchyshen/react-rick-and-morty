@@ -1,0 +1,45 @@
+$base-color: rgb(209, 111, 211);
+
+.search {
+  width: 600px;
+  height: 250px;
+  color: white;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px 2px $base-color;
+  border-radius: 20px;
+
+  .title {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    font-family: "Rubik Glitch", system-ui;
+  }
+
+  .input {
+    height: 40px;
+    width: 200px;
+    border-radius: 15px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    outline: none;
+  }
+
+  .searchBtn {
+    height: 40px;
+    width: 200px;
+    border-radius: 15px;
+    background-color: $base-color;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    font-size: 1.2rem;
+
+    &:active {
+      background-color: darken($color: $base-color, $amount: 15%);
+    }
+  }
+}
