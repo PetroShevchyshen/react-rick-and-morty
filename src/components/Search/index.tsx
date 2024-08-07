@@ -11,8 +11,13 @@ function Search({ title, placeholder }: SearchProps) {
       <label htmlFor="searchInput" className={styles.title}>
         {title}
       </label>
-      <input id="searchInput" type="text" placeholder={placeholder} />
-      <button>Search</button>
+      <input
+        className={styles.input}
+        id="searchInput"
+        type="text"
+        placeholder={placeholder}
+      />
+      <button className={styles.searchBtn}>Search</button>
     </div>
   );
 }

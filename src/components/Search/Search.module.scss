@@ -18,7 +18,7 @@ $base-color: rgb(209, 111, 211);
     font-family: "Rubik Glitch", system-ui;
   }
 
-  input {
+  .input {
     height: 40px;
     width: 200px;
     border-radius: 15px;
@@ -27,7 +27,7 @@ $base-color: rgb(209, 111, 211);
     outline: none;
   }
 
-  button {
+  .searchBtn {
     height: 40px;
     width: 200px;
     border-radius: 15px;

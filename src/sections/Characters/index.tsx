@@ -9,6 +9,7 @@ import { Results } from "../../Interfaces/Results";
 const URL = "https://rickandmortyapi.com/api/character";
 
 function Characters() {
+  const [isLoading, setIsLoading] = useState(true);
   const [charactersCollection, setCharactersCollection] = useState<Results[]>([
     {
       id: 0,
@@ -21,12 +22,13 @@ function Characters() {
     },
   ]);
 
-  useEffect(() => {
-    async function getCharacters(): Promise<void> {
-      const response = await axios.get<CharactersResponse>(URL);
+  async function getCharacters(): Promise<void> {
+    const response = await axios.get<CharactersResponse>(URL);
+    setCharactersCollection(response.data.results);
+    setIsLoading(false);
+  }
 
-      setCharactersCollection(response.data.results);
-    }
+  useEffect(() => {
     getCharacters();
   }, []);
 
@@ -34,17 +36,11 @@ function Characters() {
     <section className={styles.characters}>
       <Search title="Characters" placeholder="Type name of Character" />
       <div className={styles.collection}>
-        {charactersCollection.map((item) => (
-          <Card
-            key={item.id}
-            name={item.name}
-            gender={item.gender}
-            species={item.species}
-            status={item.status}
-            location={item.location.name}
-            image={item.image}
-          />
-        ))}
+        {isLoading
+          ? "loading..."
+          : charactersCollection.map((item) => (
+              <Card key={item.id} {...item} />
+            ))}
       </div>
     </section>
   );

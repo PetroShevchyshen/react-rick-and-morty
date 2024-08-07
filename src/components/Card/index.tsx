@@ -1,3 +1,4 @@
+import { Location } from "../../Interfaces/Location";
 import styles from "./Card.module.scss";
 
 interface CardProps {
@@ -5,7 +6,7 @@ interface CardProps {
   gender: string;
   species: string;
   status: string;
-  location: string;
+  location: Location;
   image: string;
 }
 
@@ -18,7 +19,7 @@ function Card({ name, gender, species, status, location, image }: CardProps) {
         <p>{`Gender: ${gender}`}</p>
         <p>{`Species: ${species}`}</p>
         <p>{`Status: ${status}`}</p>
-        <p>{`Location: ${location}`}</p>
+        <p>{`Location: ${location.name}`}</p>
       </div>
     </div>
   );
