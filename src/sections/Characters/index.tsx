@@ -23,6 +23,7 @@ function Characters() {
   ]);
 
   async function getCharacters(): Promise<void> {
+    setIsLoading(true);
     const response = await axios.get<CharactersResponse>(URL);
     setCharactersCollection(response.data.results);
     setIsLoading(false);
