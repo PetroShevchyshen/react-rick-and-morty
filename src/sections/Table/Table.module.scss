@@ -1,13 +1,16 @@
 .section {
-  margin-bottom: 30px;
+  margin-bottom: 1.8rem;
 }
 .table {
   background-color: black;
-  tr {
-    &:nth-of-type(odd) {
-      background-color: rgb(77, 77, 77);
-    }
+
+  tr:nth-of-type(odd) {
+    background-color: rgb(77, 77, 77);
   }
+  thead > tr {
+    background-color: black !important;
+  }
+
   td {
     color: white;
   }

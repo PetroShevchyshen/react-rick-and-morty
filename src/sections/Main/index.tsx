@@ -5,23 +5,23 @@ import TableSection from "../Table";
 import styles from "./Main.module.scss";
 
 import { useEffect, useState } from "react";
-import { EpisodeResults } from "../../Interfaces/EpisodeResults";
-import { LocationResults } from "../../Interfaces/LocationResults";
-import { LocationResponse } from "../../Interfaces/LocationResponse";
-import { EpisodesResponse } from "../../Interfaces/EpisodesResponse";
-
-const URLS = {
-  episodes: "https://rickandmortyapi.com/api/episode",
-  locations: "https://rickandmortyapi.com/api/location",
-};
+import { EpisodeResults } from "../../utilities/Interfaces/EpisodeResults";
+import { LocationResults } from "../../utilities/Interfaces/LocationResults";
+import { LocationResponse } from "../../utilities/Interfaces/LocationResponse";
+import { EpisodesResponse } from "../../utilities/Interfaces/EpisodesResponse";
+import { URLS } from "../../utilities/const/Links";
 
 function Main() {
-  const [episodes, setEpisodes] = useState<EpisodeResults[]>();
-  const [locations, setLocations] = useState<LocationResults[]>();
+  const [episodes, setEpisodes] = useState<EpisodeResults[]>([]);
+  const [locations, setLocations] = useState<LocationResults[]>([]);
 
   async function getData(url: string) {
-    const data = await axios.get(url);
-    return data.data;
+    try {
+      const { data } = await axios.get(url);
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async function getEpisodes() {

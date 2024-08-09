@@ -1,4 +1,4 @@
-import { Location } from "../../Interfaces/Location";
+import { Location } from "../../utilities/Interfaces/Location";
 import styles from "./Card.module.scss";
 
 interface CardProps {

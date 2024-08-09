@@ -2,12 +2,12 @@
   color: white;
   width: 250px;
   height: 300px;
-  border-radius: 15px;
+  border-radius: 1rem;
   cursor: pointer;
   position: relative;
 
   &:hover {
-    box-shadow: 0 0 20px 8px rgb(180, 255, 126);
+    box-shadow: 0 0 1.2rem 8px rgb(180, 255, 126);
     transition-duration: 0.3s;
 
     .info {
@@ -41,7 +41,7 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    border-radius: 15px;
+    border-radius: 1rem;
     object-fit: cover;
   }
 

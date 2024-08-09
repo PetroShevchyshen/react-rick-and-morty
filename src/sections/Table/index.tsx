@@ -7,26 +7,17 @@ import {
   Paper,
   TableCell,
 } from "@mui/material";
+
 import styles from "./Table.module.scss";
 import Search from "../../components/Search";
-import { EpisodeResults } from "../../Interfaces/EpisodeResults";
-import { LocationResults } from "../../Interfaces/LocationResults";
-import { useEffect, useState } from "react";
+import { EpisodeResults } from "../../utilities/Interfaces/EpisodeResults";
+import { LocationResults } from "../../utilities/Interfaces/LocationResults";
+import { FC, useEffect, useState } from "react";
+import dataType from "../../utilities/enums/DataType";
+import TableProps from "../../utilities/Interfaces/TableProps";
+import { episodesTitles, locationsTitles } from "../../utilities/const/Titles";
 
-interface TableProps {
-  name: string;
-  data: EpisodeResults[] | LocationResults[] | undefined;
-}
-
-enum dataType {
-  episodes = "Episodes",
-  location = "Location",
-}
-
-const episodesTitles = ["Episode", "Name", "Date"];
-const locationsTitles = ["Name", "Type", "Dimension"];
-
-function TableSection({ name, data }: TableProps) {
+const TableSection: FC<TableProps> = ({ name, data }) => {
   const [dataEpisodes, setDataEpisodes] = useState<EpisodeResults[]>([]);
   const [dataLocations, setDataLocations] = useState<LocationResults[]>([]);
 
@@ -83,6 +74,6 @@ function TableSection({ name, data }: TableProps) {
       </TableContainer>
     </section>
   );
-}
+};
 
 export default TableSection;
