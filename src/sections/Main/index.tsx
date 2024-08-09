@@ -11,7 +11,7 @@ import { LocationResponse } from "../../utilities/Interfaces/LocationResponse";
 import { EpisodesResponse } from "../../utilities/Interfaces/EpisodesResponse";
 import { URLS } from "../../utilities/const/Links";
 
-function Main() {
+const Main = () => {
   const [episodes, setEpisodes] = useState<EpisodeResults[]>([]);
   const [locations, setLocations] = useState<LocationResults[]>([]);
 
@@ -52,6 +52,6 @@ function Main() {
       <TableSection name="Location" data={locations} />
     </>
   );
-}
+};
 
 export default Main;

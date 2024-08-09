@@ -7,7 +7,7 @@ import { CharactersResponse } from "../../utilities/Interfaces/CharactersRespons
 import { Results } from "../../utilities/Interfaces/Results";
 import { URLS } from "../../utilities/const/Links";
 
-function Characters() {
+const Characters = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [charactersCollection, setCharactersCollection] = useState<Results[]>([
     {
@@ -50,6 +50,6 @@ function Characters() {
       </div>
     </section>
   );
-}
+};
 
 export default Characters;

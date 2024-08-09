@@ -1,11 +1,8 @@
+import { FC } from "react";
+import { SearchProps } from "../../utilities/Interfaces/SearchProps";
 import styles from "./Search.module.scss";
 
-interface SearchProps {
-  title: string;
-  placeholder: string;
-}
-
-function Search({ title, placeholder }: SearchProps) {
+const Search: FC<SearchProps> = ({ title, placeholder }) => {
   return (
     <div className={styles.search}>
       <label htmlFor="searchInput" className={styles.title}>
@@ -20,6 +17,6 @@ function Search({ title, placeholder }: SearchProps) {
       <button className={styles.searchBtn}>Search</button>
     </div>
   );
-}
+};
 
 export default Search;
