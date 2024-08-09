@@ -3,10 +3,9 @@ import Card from "../../components/Card";
 import Search from "../../components/Search";
 import styles from "./Characters.module.scss";
 import { useEffect, useState } from "react";
-import { CharactersResponse } from "../../Interfaces/CharactersResponse";
-import { Results } from "../../Interfaces/Results";
-
-const URL = "https://rickandmortyapi.com/api/character";
+import { CharactersResponse } from "../../utilities/Interfaces/CharactersResponse";
+import { Results } from "../../utilities/Interfaces/Results";
+import { URLS } from "../../utilities/const/Links";
 
 function Characters() {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,8 +22,15 @@ function Characters() {
   ]);
 
   async function getCharacters(): Promise<void> {
-    const response = await axios.get<CharactersResponse>(URL);
-    setCharactersCollection(response.data.results);
+    setIsLoading(true);
+
+    try {
+      const response = await axios.get<CharactersResponse>(URLS.characters);
+      setCharactersCollection(response.data.results);
+    } catch (error) {
+      console.error(error);
+    }
+
     setIsLoading(false);
   }
 

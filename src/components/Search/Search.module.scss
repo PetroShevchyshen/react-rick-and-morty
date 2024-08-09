@@ -4,33 +4,33 @@ $base-color: rgb(209, 111, 211);
   width: 600px;
   height: 250px;
   color: white;
-  margin: 50px auto;
+  margin: 3.1rem auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 15px 2px $base-color;
-  border-radius: 20px;
+  box-shadow: 0 0 1rem 2px $base-color;
+  border-radius: 1.4rem;
 
   .title {
     font-size: 3rem;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
     font-family: "Rubik Glitch", system-ui;
   }
 
   .input {
     height: 40px;
     width: 200px;
-    border-radius: 15px;
-    padding-left: 10px;
-    margin-bottom: 20px;
+    border-radius: 1rem;
+    padding-left: 0.9rem;
+    margin-bottom: 1.2rem;
     outline: none;
   }
 
   .searchBtn {
     height: 40px;
     width: 200px;
-    border-radius: 15px;
+    border-radius: 1rem;
     background-color: $base-color;
     color: white;
     outline: none;
