@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, memo, useState } from "react";
 import { SearchProps } from "../../utilities/Interfaces/SearchProps";
 import styles from "./Search.module.scss";
 
@@ -34,4 +34,4 @@ const Search: FC<SearchProps> = ({ title, placeholder, searchFunction }) => {
   );
 };
 
-export default Search;
+export default memo(Search);
