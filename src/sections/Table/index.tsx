@@ -12,7 +12,7 @@ import styles from "./Table.module.scss";
 import Search from "../../components/Search";
 import { EpisodeResults } from "../../utilities/Interfaces/EpisodeResults";
 import { LocationResults } from "../../utilities/Interfaces/LocationResults";
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import dataType from "../../utilities/enums/DataType";
 import TableProps from "../../utilities/Interfaces/TableProps";
 import { episodesTitles, locationsTitles } from "../../utilities/const/Titles";
@@ -20,6 +20,33 @@ import { episodesTitles, locationsTitles } from "../../utilities/const/Titles";
 const TableSection: FC<TableProps> = ({ name, data }) => {
   const [dataEpisodes, setDataEpisodes] = useState<EpisodeResults[]>([]);
   const [dataLocations, setDataLocations] = useState<LocationResults[]>([]);
+  const [searchValue, setSearchValue] = useState("");
+
+  const renderEpisodes = useCallback(() => {
+    const filteredEpisodes = dataEpisodes.filter((item) =>
+      item.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    return filteredEpisodes.map((item) => (
+      <TableRow key={item.id}>
+        <TableCell align="center">{item.episode}</TableCell>
+        <TableCell align="center">{item.name}</TableCell>
+        <TableCell align="center">{item.air_date}</TableCell>
+      </TableRow>
+    ));
+  }, [dataEpisodes, searchValue]);
+
+  const renderLocations = useCallback(() => {
+    const filteredLocations = dataLocations.filter((item) =>
+      item.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    return filteredLocations.map((item) => (
+      <TableRow key={item.id}>
+        <TableCell align="center">{item.name}</TableCell>
+        <TableCell align="center">{item.type}</TableCell>
+        <TableCell align="center">{item.dimension}</TableCell>
+      </TableRow>
+    ));
+  }, [dataLocations, searchValue]);
 
   useEffect(() => {
     if (dataType.episodes.toLowerCase() === name.toLowerCase()) {
@@ -28,10 +55,14 @@ const TableSection: FC<TableProps> = ({ name, data }) => {
       setDataLocations(data as LocationResults[]);
     }
   }, [data]);
-
+  console.log("render");
   return (
     <section className={styles.section}>
-      <Search title={name} placeholder={`Type name of ${name}`} />
+      <Search
+        title={name}
+        placeholder={`Type name of ${name}`}
+        searchFunction={setSearchValue}
+      />
       <TableContainer component={Paper}>
         <Table
           sx={{ minWidth: 700 }}
@@ -55,20 +86,8 @@ const TableSection: FC<TableProps> = ({ name, data }) => {
           </TableHead>
           <TableBody>
             {name.toLowerCase() === dataType.episodes.toLowerCase()
-              ? dataEpisodes?.map((item) => (
-                  <TableRow key={item.id}>
-                    <TableCell align="center">{item.episode}</TableCell>
-                    <TableCell align="center">{item.name}</TableCell>
-                    <TableCell align="center">{item.air_date}</TableCell>
-                  </TableRow>
-                ))
-              : dataLocations?.map((item) => (
-                  <TableRow key={item.id}>
-                    <TableCell align="center">{item.name}</TableCell>
-                    <TableCell align="center">{item.type}</TableCell>
-                    <TableCell align="center">{item.dimension}</TableCell>
-                  </TableRow>
-                ))}
+              ? renderEpisodes()
+              : renderLocations()}
           </TableBody>
         </Table>
       </TableContainer>

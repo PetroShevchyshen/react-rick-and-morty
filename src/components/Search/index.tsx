@@ -1,11 +1,19 @@
+import { FC, memo, useState } from "react";
+import { SearchProps } from "../../utilities/Interfaces/SearchProps";
 import styles from "./Search.module.scss";
 
-interface SearchProps {
-  title: string;
-  placeholder: string;
-}
+const Search: FC<SearchProps> = ({ title, placeholder, searchFunction }) => {
+  const [inputValue, setInputValue] = useState("");
 
-function Search({ title, placeholder }: SearchProps) {
+  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  const onSearch = () => {
+    searchFunction(inputValue);
+    setInputValue("");
+  };
+
   return (
     <div className={styles.search}>
       <label htmlFor="searchInput" className={styles.title}>
@@ -15,11 +23,15 @@ function Search({ title, placeholder }: SearchProps) {
         className={styles.input}
         id="searchInput"
         type="text"
+        value={inputValue}
         placeholder={placeholder}
+        onChange={onInputChange}
       />
-      <button className={styles.searchBtn}>Search</button>
+      <button onClick={() => onSearch()} className={styles.searchBtn}>
+        Search
+      </button>
     </div>
   );
-}
+};
 
-export default Search;
+export default memo(Search);

@@ -11,9 +11,11 @@ import { LocationResponse } from "../../utilities/Interfaces/LocationResponse";
 import { EpisodesResponse } from "../../utilities/Interfaces/EpisodesResponse";
 import { URLS } from "../../utilities/const/Links";
 
-function Main() {
+const Main = () => {
   const [episodes, setEpisodes] = useState<EpisodeResults[]>([]);
   const [locations, setLocations] = useState<LocationResults[]>([]);
+  const [isLoadedEpisodes, setIsLoadedEpisodes] = useState(false);
+  const [isLoadedLocations, setIsLoadedLocations] = useState(false);
 
   async function getData(url: string) {
     try {
@@ -27,11 +29,13 @@ function Main() {
   async function getEpisodes() {
     const response: EpisodesResponse = await getData(URLS.episodes);
     setEpisodes(response.results);
+    setIsLoadedEpisodes(true);
   }
 
   async function getLocations() {
     const response: LocationResponse = await getData(URLS.locations);
     setLocations(response.results);
+    setIsLoadedLocations(true);
   }
 
   useEffect(() => {
@@ -48,10 +52,10 @@ function Main() {
         </div>
       </section>
       <Characters />
-      <TableSection name="Episodes" data={episodes} />
-      <TableSection name="Location" data={locations} />
+      {isLoadedEpisodes && <TableSection name="Episodes" data={episodes} />}
+      {isLoadedLocations && <TableSection name="Location" data={locations} />}
     </>
   );
-}
+};
 
 export default Main;

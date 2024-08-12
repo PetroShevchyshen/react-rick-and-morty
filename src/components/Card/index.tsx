@@ -1,16 +1,16 @@
-import { Location } from "../../utilities/Interfaces/Location";
+import { FC } from "react";
+import { CardProps } from "../../utilities/Interfaces/CardProps";
+
 import styles from "./Card.module.scss";
 
-interface CardProps {
-  name: string;
-  gender: string;
-  species: string;
-  status: string;
-  location: Location;
-  image: string;
-}
-
-function Card({ name, gender, species, status, location, image }: CardProps) {
+const Card: FC<CardProps> = ({
+  name,
+  gender,
+  species,
+  status,
+  location,
+  image,
+}) => {
   return (
     <div className={styles.card}>
       <img className={styles.image} src={image} alt={name} />
@@ -23,6 +23,6 @@ function Card({ name, gender, species, status, location, image }: CardProps) {
       </div>
     </div>
   );
-}
+};
 
 export default Card;
