@@ -20,6 +20,35 @@ import { episodesTitles, locationsTitles } from "../../utilities/const/Titles";
 const TableSection: FC<TableProps> = ({ name, data }) => {
   const [dataEpisodes, setDataEpisodes] = useState<EpisodeResults[]>([]);
   const [dataLocations, setDataLocations] = useState<LocationResults[]>([]);
+  const [searchValue, setSearchValue] = useState("");
+
+  function renderEpisodes(search: string = "") {
+    const filteredData = dataEpisodes.filter((item) =>
+      item.name.toLowerCase().includes(search.toLowerCase())
+    );
+
+    return filteredData.map((item) => (
+      <TableRow key={item.id}>
+        <TableCell align="center">{item.episode}</TableCell>
+        <TableCell align="center">{item.name}</TableCell>
+        <TableCell align="center">{item.air_date}</TableCell>
+      </TableRow>
+    ));
+  }
+
+  function renderLocations(search: string = "") {
+    const filteredData = dataLocations.filter((item) =>
+      item.name.toLowerCase().includes(search.toLowerCase())
+    );
+
+    return filteredData.map((item) => (
+      <TableRow key={item.id}>
+        <TableCell align="center">{item.name}</TableCell>
+        <TableCell align="center">{item.type}</TableCell>
+        <TableCell align="center">{item.dimension}</TableCell>
+      </TableRow>
+    ));
+  }
 
   useEffect(() => {
     if (dataType.episodes.toLowerCase() === name.toLowerCase()) {
@@ -31,7 +60,11 @@ const TableSection: FC<TableProps> = ({ name, data }) => {
 
   return (
     <section className={styles.section}>
-      <Search title={name} placeholder={`Type name of ${name}`} />
+      <Search
+        title={name}
+        placeholder={`Type name of ${name}`}
+        searchFunction={setSearchValue}
+      />
       <TableContainer component={Paper}>
         <Table
           sx={{ minWidth: 700 }}
@@ -55,20 +88,8 @@ const TableSection: FC<TableProps> = ({ name, data }) => {
           </TableHead>
           <TableBody>
             {name.toLowerCase() === dataType.episodes.toLowerCase()
-              ? dataEpisodes?.map((item) => (
-                  <TableRow key={item.id}>
-                    <TableCell align="center">{item.episode}</TableCell>
-                    <TableCell align="center">{item.name}</TableCell>
-                    <TableCell align="center">{item.air_date}</TableCell>
-                  </TableRow>
-                ))
-              : dataLocations?.map((item) => (
-                  <TableRow key={item.id}>
-                    <TableCell align="center">{item.name}</TableCell>
-                    <TableCell align="center">{item.type}</TableCell>
-                    <TableCell align="center">{item.dimension}</TableCell>
-                  </TableRow>
-                ))}
+              ? renderEpisodes(searchValue)
+              : renderLocations(searchValue)}
           </TableBody>
         </Table>
       </TableContainer>
