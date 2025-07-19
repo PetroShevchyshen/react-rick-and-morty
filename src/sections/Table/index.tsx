@@ -55,7 +55,7 @@ const TableSection: FC<TableProps> = ({ name, data }) => {
       setDataLocations(data as LocationResults[]);
     }
   }, [data]);
-  console.log("render");
+
   return (
     <section className={styles.section}>
       <Search
